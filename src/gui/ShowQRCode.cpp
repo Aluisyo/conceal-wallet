@@ -18,28 +18,20 @@
 
 namespace WalletGui {
 
-    ShowQRCode::ShowQRCode(QWidget* _parent) : QDialog(_parent), m_ui(new Ui::ShowQRCode) 
-    {
+    ShowQRCode::ShowQRCode(QWidget* _parent) : QDialog(_parent), m_ui(new Ui::ShowQRCode) {
         m_ui->setupUi(this);
         connect(&WalletAdapter::instance(), &WalletAdapter::updateWalletAddressSignal, this, &ShowQRCode::updateWalletAddress);
-
     }
 
-    ShowQRCode::~ShowQRCode() 
-    {
-
+    ShowQRCode::~ShowQRCode() {
     }
 
-    void ShowQRCode::updateWalletAddress(const QString& _address) 
-    {
-
-        m_ui->m_qrLabel->showQRCode(_address);
+    void ShowQRCode::updateWalletAddress(const QString& _address) {
+        m_ui->m_qrLabel->showQRCode("conceal:" + _address);
     }
 
-    void ShowQRCode::showQR(const QString& _address) 
-    {
-
-        m_ui->m_qrLabel->showQRCode(_address);
+    void ShowQRCode::showQR(const QString& _address) {
+        m_ui->m_qrLabel->showQRCode("conceal:" + _address);
     }
 
 }
